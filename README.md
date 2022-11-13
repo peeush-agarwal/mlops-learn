@@ -16,3 +16,8 @@ This repo is to maintain the source code for tutorial where we want to deploy th
 
 ## Create Azure ML job
 1. Create Azure ML job using `az ml job create --file job.yml -g {resource-group-name} -w {workspace-name}`
+
+## Create Service Principal for Azure
+
+1. Create a service principal. `az ad sp create-for-rbac --name "mlops-learn-app" --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth`
+1. Save the output JSON into GitHub Action Secrets as `AZURE_CREDENTIALS`.
