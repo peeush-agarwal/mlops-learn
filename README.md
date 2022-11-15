@@ -11,11 +11,14 @@ This repo is to maintain the source code for tutorial where we want to deploy th
 1. Activate Azure ML extension in the CLI using `az extension add -n ml -y`
 
 ## Create Azure ML Data asset
-1. Register the data folder into Azure ML Data Assets
-   `cd src && az ml data create --file dataset.yml -g {resource-group-name} -w {workspace-name}`
+1. Register the experimentation data folder into Azure ML Data Assets for dev environment
+   `cd src && az ml data create --file dataset_dev.yml -g {resource-group-name} -w {workspace-name}`
+1. Register the production data folder into Azure ML Data Assets for prod environment
+   `cd src && az ml data create --file dataset_prod.yml -g {resource-group-name} -w {workspace-name}`
 
 ## Create Azure ML job
-1. Create Azure ML job using `az ml job create --file job.yml -g {resource-group-name} -w {workspace-name}`
+1. Create Azure ML job for Dev env using `az ml job create --file job_dev.yml -g {resource-group-name} -w {workspace-name}`
+1. Create Azure ML job for Prod env using `az ml job create --file job_prod.yml -g {resource-group-name} -w {workspace-name}`
 
 ## Create Service Principal for Azure
 
