@@ -1,0 +1,24 @@
+name: Deploy production model manually
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Create endpoint
+      run: |
+        az ml online-endpoint create --name ${{secrets.ENDPOINT_NAME}} -f src/create_endpoint.yaml -g peeush.agarwal-rg -w mlops-learn-ws
+    - name: Deploy model
+      run: |
+        az ml online-deployment create --name prod-model-deployment --endpoint ${{secrets.ENDPOINT_NAME}} -f src/model-deployment.yaml --all-traffic -g peeush.agarwal-rg -w mlops-learn-ws
