@@ -2,7 +2,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 name: prod-model-deployment
 endpoint_name: diabetes_prod_ep
 model:
-  name: diabetes_prod_model
+  name: diabetes_prod_model_gh
   version: 1
   path: model
   type: mlflow_model
